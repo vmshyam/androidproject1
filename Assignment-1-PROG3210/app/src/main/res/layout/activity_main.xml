@@ -34,7 +34,7 @@
         android:fontFamily="cursive"
         android:text="SnapSter"
         android:textColor="@android:color/background_light"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"

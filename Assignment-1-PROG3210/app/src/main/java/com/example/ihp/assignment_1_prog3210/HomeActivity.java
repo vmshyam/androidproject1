@@ -4,10 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * This Java file is related to 'activity_home.xml'
+ * The purpose of this file is to display user profile
+ *      info, including user 'Username'.
+ */
 public class HomeActivity extends AppCompatActivity {
 
-    public TextView topUsernameDisplay;
-    public String profileUsername;
+    private TextView topUsernameDisplay;
+    private String profileUsername;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +22,6 @@ public class HomeActivity extends AppCompatActivity {
         topUsernameDisplay = (TextView) findViewById(R.id.tvUserName);
         profileUsername = "Hi " + getIntent().getStringExtra("USERNAME");
         topUsernameDisplay.setText(profileUsername);
-
 
     }
 }

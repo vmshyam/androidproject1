@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * This Java file is related to 'activity_register.xml'
+ * The purpose of this file is to allow user to Register
+ *      by providing personal and login information.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText accountNameValue;
@@ -16,10 +21,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailValue;
     private EditText passwordValue;
     private Button btnNewRegister;
-    public String usersName;
-    public String usersUsername;
-    public String userEmail;
-    public String userPassword;
+
+    private String usersName;
+    private String usersUsername;
+    private String userEmail;
+    private String userPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +38,16 @@ public class RegisterActivity extends AppCompatActivity {
         passwordValue = (EditText) findViewById(R.id.etPasswordReg);
         btnNewRegister = (Button) findViewById(R.id.btnSignUpReg);
 
+        // When user click 'Sign Up' button
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!ValidateRegistrationInputs()){
-                    Toast.makeText(RegisterActivity.this, "Registration was Unsuccessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,
+                            "Registration was Unsuccessful", Toast.LENGTH_SHORT).show();
                 }else{
+                    Toast.makeText(RegisterActivity.this,
+                            "Successfully Registered", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     intent.putExtra("USERNAME_REG", usersUsername);
                     intent.putExtra("PASSWORD_REG", userPassword);
@@ -48,6 +58,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method checks all the text fields for valid input values before allowing the user
+     *      to register.
+     * @return  Returns 'true' if all text fields have acceptable values, else 'false'
+     */
     public boolean ValidateRegistrationInputs(){
         boolean inputValueCheck = true;
         usersName = accountNameValue.getText().toString().trim();
@@ -56,28 +71,24 @@ public class RegisterActivity extends AppCompatActivity {
         userPassword =  passwordValue.getText().toString().trim();
 
         if (usersName.isEmpty()){
-            //Toast.makeText(RegisterActivity.this, "Please enter you account name", Toast.LENGTH_SHORT).show();
             accountNameValue.setError("Please Enter a Valid Name");
             accountNameValue.getText().clear();
             inputValueCheck = false;
         }
 
         if (usersUsername.isEmpty()){
-            //Toast.makeText(RegisterActivity.this, "Please enter you account Username", Toast.LENGTH_SHORT).show();
             usernameValue.setError("Please Enter a Username");
             usernameValue.getText().clear();
             inputValueCheck = false;
         }
 
         if (userEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
-            //Toast.makeText(RegisterActivity.this, "Please enter you account Username", Toast.LENGTH_SHORT).show();
             emailValue.setError("Please Enter a Valid email");
             emailValue.getText().clear();
             inputValueCheck = false;
         }
 
         if (userPassword.isEmpty()){
-            //Toast.makeText(RegisterActivity.this, "Please enter you account Username", Toast.LENGTH_SHORT).show();
             passwordValue.setError("Please Enter a Valid Password");
             passwordValue.getText().clear();
             inputValueCheck = false;
